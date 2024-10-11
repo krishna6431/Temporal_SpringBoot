@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clone.workflow.service.OrderService;
 
 @RestController
-public class MainController {
-
+public class SwiggyController {
 	@Autowired
 	OrderService orderService;
 
