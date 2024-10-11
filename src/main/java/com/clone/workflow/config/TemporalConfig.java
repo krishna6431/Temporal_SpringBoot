@@ -12,19 +12,15 @@ import io.temporal.worker.WorkerFactory;
 @Component
 @Configuration
 public class TemporalConfig {
-	private String temporalServiceAddress = "127.0.0.1:7233";
-	private String temporalNamespace = "default";
-
 	@Bean
 	public WorkflowServiceStubs workflowServiceStubs() {
-		return WorkflowServiceStubs
-				.newInstance(WorkflowServiceStubsOptions.newBuilder().setTarget(temporalServiceAddress).build());
+		return WorkflowServiceStubs.newLocalServiceStubs();
 	}
 
 	@Bean
 	public WorkflowClient workflowClient(WorkflowServiceStubs workflowServiceStubs) {
-		return WorkflowClient.newInstance(workflowServiceStubs,
-				WorkflowClientOptions.newBuilder().setNamespace(temporalNamespace).build());
+        // Here u may pass workflowServiceStubs options like namespaces.
+		return WorkflowClient.newInstance(workflowServiceStubs);
 	}
 
 	@Bean
